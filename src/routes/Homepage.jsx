@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
+import profile from '../assets/profilepic.jpg'
 import image1 from '../assets/image1.svg'
+import image2 from '../assets/image2.svg'
+import image3 from '../assets/image3.svg'
+import image9 from '../assets/image9.svg'
 
 export const Homepage = ()=>{
     
@@ -32,15 +36,15 @@ export const Homepage = ()=>{
                 <a href="#">Services</a>
                 <a href="#">About</a>
             </nav>
-            <div className="profile"><img src="src/assets/profilepic.jpg" alt="profile"/></div>
+            <div className="profile"><img src={profile} alt="profile"/></div>
         </div>
         <div className="sections">
             <div className="main_content">
                 <h1 className="hid left">We change the way you <span>hire.</span></h1>
-                <img className="hid right" src={image1} width={700}/>
+                <img className="hid right" src={image1} width={700} alt="image1"/>
             </div>
             <div className="mid_content">
-                <img className="hid left" src="src/assets/image2.svg" width={700}/>
+                <img className="hid left" src={image2} width={700} alt="image2"/>
                 <h2 className="hid right">We're sector specialists</h2>
                 <p className="hid right">The Recruitment Solutions team has been helping
                 great candidates get jobs with amazing companies since 2008.
@@ -53,10 +57,10 @@ export const Homepage = ()=>{
                     Follow every applicant and build a database of skills and profiles with indexed documents.
                     No need to outsource your recruitment - handle everything internally in a simple and professional way.
                 </p>
-                <img className="hid right" src="src/assets/image3.svg" width={600}/>
+                <img className="hid right" src={image3} width={600} alt="image3"/>
             </div>
             <div className="mobile_content hid">
-                <img className="hid left" src="src/assets/image9.svg" width={600}/>
+                <img className="hid left" src={image9} width={600} alt="image9"/>
                 <h2 className="hid right">Progressive Mobile Application</h2>
                 <div className="hid right">
                     <h3>Access our app from your computer, phone, or tablet to ensure you never miss any activity, wherever you are.</h3>
