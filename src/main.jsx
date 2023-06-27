@@ -10,7 +10,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router>
+    <Router basename='/recruitment-solutions'>
       <div className='brand'>
         <h2 className='brand_name'>Recruitment Solutions</h2>
         <h2 className='brand_logo'>RS</h2>
