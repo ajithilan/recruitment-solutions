@@ -2,7 +2,7 @@ import { createContext, useRef, useState } from 'react'
 import { Login } from '../components/login'
 import { Register } from '../components/register'
 import { InfiniteSlider } from '../components/infiniteSlider';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
 

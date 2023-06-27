@@ -1,19 +1,13 @@
 import { Link } from "react-router-dom";
 
 export const Homepage = ()=>{
-
+    
     const handleNavClick = (e)=>{
         e.target.tagName === 'A' && (document.querySelectorAll('.top_bar a').forEach((element)=>element.classList.remove('active')),
         e.target.classList.add('active'));
     }
 
     setTimeout(() => {
-        let options = {
-            root: document.querySelector("#scrollArea"),
-            rootMargin: "-500px",
-            threshold: 1.0,
-          };
-
         const observer = new IntersectionObserver((entries)=>{
             entries.forEach((entry)=>{
                 entry.isIntersecting &&
@@ -22,7 +16,7 @@ export const Homepage = ()=>{
                     observer.unobserve(entry.target)
                 );
             })
-        },[options]);
+        });
         const hiddenElements = document.querySelectorAll('.hid');
         hiddenElements.forEach((element)=>observer.observe(element));
     }, 300);
