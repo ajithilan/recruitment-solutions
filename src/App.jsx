@@ -10,6 +10,7 @@ export default function App(){
             <SlideRoutes duration={1000} timing='ease-in-out'>
                 <Route path='' element={<Homepage/>}/>
                 <Route path='/talent-search' element={<TalentSearch/>}/>
+                <Route path='*' element={<TalentSearch/>}/>
             </SlideRoutes>
         </div>
 }
