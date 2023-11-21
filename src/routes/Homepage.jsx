@@ -1,12 +1,69 @@
-import { Link } from "react-router-dom";
+import '../CSSfiles/homepage.sass'
 import profile from '../assets/profilepic.jpg'
 import image1 from '../assets/image1.svg'
 import image2 from '../assets/image2.svg'
 import image3 from '../assets/image3.svg'
 import image9 from '../assets/image9.svg'
+import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from 'react'
+import { Fab, Backdrop, CircularProgress } from '@mui/material'
+import { Auth } from '../components/Auth'
+import { Snackbar, Alert } from '@mui/material';
 
 export const Homepage = ()=>{
-    
+
+    const [logoutButtonToggle, setLogoutButtonToggle] = useState(false);
+    const [loginRequest, setLoginRequest] = useState(false);
+    const [logoutRequest, setLogoutRequest] = useState(false);
+    const [userSessionStart, setUserSessionStart] = useState(null);
+    const logoutTransitionStyles = { transform: 'translateY(60px)' }
+    let logoutStyles = {
+        display: 'none',
+        position: 'absolute',
+        top: '44px',
+        right: '132px',
+        width: '140px',
+        height: '38px',
+        fontSize: '16px',
+        gap: '8px',
+        zIndex:'4',
+        transition: 'transform .3s'
+    }
+    const [updatedLogoutStyles, setUpdatedLogoutStyles] = useState(logoutStyles);
+    const [loginPrompt, setLoginPrompt] = useState(false);
+    const [registrationPrompt, setRegistrationPrompt] = useState(false);
+    const promptStyles = {
+        width:'400px',
+        height:'50px',
+        fontSize:'24px',
+        marginBottom:'40px',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+    }
+    let loginValidation = useRef();
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        loginValidation.current = JSON.parse(localStorage.getItem('loginValidation'));
+        loginValidation.current === null ? localStorage.setItem('loginValidation',JSON.stringify({
+            validSession: false,
+            companyName: ''
+        })) : (loginValidation.current.validSession && setUserSessionStart(true));
+    },[])
+
+    useEffect(()=>{
+        setUpdatedLogoutStyles(logoutButtonToggle ? {...logoutStyles, ...logoutTransitionStyles} : logoutStyles)
+    },[logoutButtonToggle])
+
+    function updateValidation(){
+        loginValidation.current = JSON.parse(localStorage.getItem('loginValidation'));
+        setTimeout(() => {
+            setLoginPrompt(false);
+        }, 2000);
+        setUserSessionStart(true);
+    }
+
     const handleNavClick = (e)=>{
         e.target.tagName === 'A' && (document.querySelectorAll('.top_bar a').forEach((element)=>element.classList.remove('active')),
         e.target.classList.add('active'));
@@ -18,16 +75,77 @@ export const Homepage = ()=>{
                 entry.isIntersecting &&
                 (
                     entry.target.classList.add('show'),
+                    setTimeout(() => {   
+                        entry.target.classList.remove('hid')
+                    }, 2000),
                     observer.unobserve(entry.target)
                 );
             })
         });
         const hiddenElements = document.querySelectorAll('.hid');
         hiddenElements.forEach((element)=>observer.observe(element));
-    }, 300);
+    }, 500);
 
+    const handleDropdown = ()=>{
+        userSessionStart &&
+            (logoutButtonToggle ?
+            (
+                setLogoutButtonToggle(!logoutButtonToggle),
+                setTimeout(() => {   
+                    document.querySelector('.logout').style.display = 'none';
+                }, 100)
+            ) :
+            (document.querySelector('.logout').style.display = 'flex',
+            setTimeout(() => {
+                setLogoutButtonToggle(!logoutButtonToggle);
+            }, 100)))
+    }
+
+    const handleLogin = ()=>{
+        document.body.style.overflow = 'hidden';
+        setLoginRequest(true);
+    }
+
+    const loginClose = (e)=>{
+        e.target.classList.contains('muiBackdrop') && (setLoginRequest(false), document.body.style.overflow = 'auto')
+    }
+
+    const handleLogout = ()=>{
+        setLogoutRequest(true);
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            loginValidation.current = {
+                validSession : false,
+                companyName : ''
+            }
+            localStorage.setItem('loginValidation', JSON.stringify(loginValidation.current))
+            document.body.style.overflow = 'auto';
+            setLogoutRequest(false);
+            setUserSessionStart(false);
+            setLogoutButtonToggle(false);
+            handleDropdown();
+        }, 2000);
+    }
+
+    const handleTalentpageEntry = ()=>{
+        loginValidation.current.validSession ? navigate('/talent-search') :alert('Please register or login to acquire talents')
+    }
+
+    const authProps = {
+        loginRequest,
+        setLoginRequest,
+        loginClose,
+        updateValidation,
+        userSessionStart,
+        setLoginPrompt,
+        setRegistrationPrompt,
+    }
 
     return <div className="homepage">
+        <div className='brand'>
+          <h2 className='brand_name'>Recruitment Solutions</h2>
+          <h2 className='brand_logo'>RS</h2>
+        </div>
         <div className="top_bar" onClick={handleNavClick}>
             <nav>
                 <a href="#">Blog</a>
@@ -36,8 +154,22 @@ export const Homepage = ()=>{
                 <a href="#">Services</a>
                 <a href="#">About</a>
             </nav>
-            <div className="profile"><img src={profile} alt="profile"/></div>
+            {userSessionStart ? <div className="profileName">{(loginValidation.current.companyName).toUpperCase()}</div> :
+            <Fab className='login' onClick={handleLogin} variant="extended" color="primary" aria-label="login"
+                sx={{width:'220px', fontSize:'17px', zIndex: 20}}>
+                Register / Login
+            </Fab>}
+            <div className="profile" title='Account settings'><img src={profile} alt="profile" onClick={handleDropdown}/></div>
         </div>
+        <Fab className='logout' onClick={handleLogout} variant="extended" color="primary" aria-label="logout" sx={updatedLogoutStyles}>
+            Logout
+            <i className='bi-box-arrow-right'></i>
+        </Fab>
+        <Backdrop
+            sx={{ color: '#fff', zIndex: 25 }}
+            open={logoutRequest} >
+            <CircularProgress color="inherit" />
+        </Backdrop>
         <div className="sections">
             <div className="main_content">
                 <h1 className="hid left">We change the way you <span>hire.</span></h1>
@@ -69,15 +201,22 @@ export const Homepage = ()=>{
                 </div>
             </div>
             <div className="link_container">
-                <Link className="talentsearch_button" to='/talentsearch'>Talent search</Link>
+                <button className="talentsearch_button" onClick={handleTalentpageEntry}>Talent search</button>
             </div>
             <footer className="hid bottom">
-                <i className="hid bi bi-facebook"></i>
-                <i className="hid bi bi-instagram"></i>
-                <i className="hid bi bi-linkedin"></i>
-                <i className="hid bi bi-twitter"></i>
-                <i className="hid bi bi-discord"></i>
+                <div><i className="hid bi bi-facebook"></i><span>Facebook</span></div>
+                <div><i className="hid bi bi-instagram"></i><span>instagram</span></div>
+                <div><i className="hid bi bi-linkedin"></i><span>linkedin</span></div>
+                <div><i className="hid bi bi-twitter"></i><span>twitter</span></div>
+                <div><i className="hid bi bi-discord"></i><span>discord</span></div>
             </footer>
         </div>
+        <Snackbar open={registrationPrompt} autoHideDuration={2500} anchorOrigin={{ vertical : 'bottom', horizontal : 'center'}}>{
+            <Alert severity="success" sx={promptStyles}>Account registration successful</Alert>}
+        </Snackbar>
+        <Snackbar open={loginPrompt} autoHideDuration={2500} anchorOrigin={{ vertical : 'bottom', horizontal : 'center'}}>{
+            <Alert severity="success" sx={promptStyles}>Login successful</Alert>}
+        </Snackbar>
+        <Auth {...authProps}/>
     </div>
 }

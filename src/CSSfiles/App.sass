@@ -1,0 +1,192 @@
+#root
+  color: white
+  background-color: rgb(31, 32, 34)
+
+*
+  font-family: 'Poiret One', serif
+  font-weight: 800
+
+body
+  margin: auto
+
+h1, h2, h3, h4, p
+  margin: 0
+
+.brand
+  z-index: 20
+  display: flex
+  position: absolute
+  top: 32px
+  left: 42px
+  gap: 20px
+  font-size: 32px
+
+.brand_logo
+  color: rgb(182, 238, 224)
+  transform: skew(-16deg)
+  border: solid 1px rgb(155, 209, 166)
+  border-radius: 50px 0px 50px 0px
+
+.brand h2
+  margin: 0
+
+.auth_comp
+  z-index: 10
+  display: flex
+  position: relative
+  background-color: rgb(16, 33, 44)
+  border-radius: 6px
+  width: 400px
+  height: 550px
+  box-shadow: 0px 10px 50px 16px black
+  overflow: hidden
+  transition: transform .8s
+
+.login, .register
+  display: flex
+  flex-direction: column
+  justify-content: space-around
+  align-items: center
+  min-width: 400px
+  height: 550px
+  padding-top: 10px
+
+.login
+  position: relative
+  transition: margin-left 1s ease
+
+.register
+  position: relative
+  margin-left: 0
+  padding-top: 10px
+  transition: margin-left .8s ease
+
+.auth_comp.switch .register
+  margin-left: -400px
+  transition: margin-left .8s ease
+
+@keyframes blur
+  10%
+    filter: blur(2px)
+
+.login form, .register form
+  display: flex
+  flex-direction: column
+  width: 80%
+
+.auth_comp input
+  border: none
+  border-radius: 4px
+  min-height: 30px
+  padding-left: 10px
+  height: 42px
+  font-size: medium
+  border: solid 2px transparent
+  background-color: whitesmoke
+
+input
+  &.valid
+    border: solid 2px rgb(67, 182, 67)
+
+  &.error
+    border: solid 2px rgb(255, 0, 0)
+
+@keyframes errorAnim
+  20%
+    transform: translateX(-5px)
+  40%
+    transform: translateX(5px)
+  60%
+    transform: translateX(-5px)
+  80%
+    transform: translateX(5px)
+    
+.auth_comp
+  input
+    &::placeholder
+      text-align: start
+
+    &:focus
+      outline: none
+
+      &::placeholder
+        color: transparent
+
+  label
+    visibility: hidden
+    padding-left: 10px
+    color: rgb(221, 48, 48)
+    font-weight: bold
+
+.login input.password_visibility
+  position: absolute
+  top: 200px
+  right: 10%
+  width: 20px
+
+.register input.password_visibility
+  position: absolute
+  top: 241px
+  right: 10%
+  width: 20px
+
+.error_message
+  height: 24px
+  padding: 4px 0px
+  font-size: 14px
+  color: rgb(255, 53, 53)
+
+.login_button, .register_button
+  width: 200px
+  height: 36px
+  box-shadow: 0px 5px 10px black
+  border: none
+  border-radius: 20px
+  font-size: 20px
+  color: white
+  margin-top: 40px
+  align-self: center
+  transition: .2s
+
+.login_button
+  background: linear-gradient(to right, rgb(135, 115, 189), rgb(80, 123, 201), rgb(53, 149, 194))
+
+.register_button
+  background: linear-gradient(to right, rgb(115, 189, 173), rgb(80, 201, 116), rgb(159, 196, 71))
+
+.login_button:hover, .register_button:hover
+  transform: translateY(-2px)
+  box-shadow: 0px 5px 10px 4px black
+  transition: .3s ease
+
+.toggle_button
+  width: 90%
+  color: whitesmoke
+  background-image: linear-gradient(to right, #49318b 0%, #516395 51%, #343e97 100%)
+  background-size: 200% auto
+  box-shadow: 0px 5px 10px black
+  border: none
+  border-radius: 10px
+  font-size: 24px
+  transition: .7s
+
+  &:hover
+    background-position: right center
+
+.rules_container
+  width: 400px
+  height: 250px
+  display: flex
+  align-items: center
+  filter: blur(0)
+  transition: .8s
+
+  &.login_rule
+    filter: blur(2px)
+    transform: translateX(-200px)
+    transition: filter .3s, transform .8s
+
+  ul li
+    font-size: 18px
+    margin-bottom: 24px
+    color: whitesmoke

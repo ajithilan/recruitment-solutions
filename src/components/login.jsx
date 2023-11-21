@@ -1,5 +1,7 @@
 import { useContext, useState} from "react";
-import { AuthContext } from "../routes/Auth";
+import { AuthContext } from "./Auth";
+import ProgressBar from '../components/progress'
+import { Backdrop } from "@mui/material";
 
 export const Login = (props)=>{
     const context = useContext(AuthContext);
@@ -8,16 +10,21 @@ export const Login = (props)=>{
     const handlePasswordVisibility = ()=>{
         setPasswordVisibility(passwordVisibility === 'password' ? 'text' : 'password')
     }
-
+    
     return <div className="login">
-        <form> 
-            <input className="email" type='email' name='email' placeholder='Email' onChange={(e)=>{context.setEmail(e.target.value)}} value={context.email}/>
+        <form onSubmit={props.handleSubmit}> 
+            <input className="email" name='email' placeholder='Email' onChange={(e)=>{context.setEmail(e.target.value)}}/>
             <div className="error_message"></div>
-            <input className="password" type={passwordVisibility} name='password' placeholder='Password' onChange={(e)=>{context.setPassword(e.target.value)}} value={context.password}/>
+            <input className="password" type={passwordVisibility} name='password' placeholder='Password' onChange={(e)=>{context.setPassword(e.target.value)}}/>
             <div className="error_message"></div>
             <input className="password_visibility" type="checkbox" onChange={handlePasswordVisibility}/>
-            <button className='login_button' type='submit' onClick={(e)=>{props.handleSubmit(e)}}>{context.loginSuccess ? 'Login successful' : 'Login'}</button>
+            <button className='login_button' type='submit'>Login</button>
         </form>
-        <button className="toggle_button" data-component='login'>New to our site ? Register</button>
+        <button className="toggle_button" data-component='login' onClick={props.handleToggle}>New to our site ? Register</button>
+        {
+            <Backdrop open={context.loginSuccess}>
+                <ProgressBar color='primary'/>
+            </Backdrop>
+        }
     </div>
 }

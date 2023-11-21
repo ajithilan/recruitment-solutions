@@ -1,5 +1,5 @@
 {
-  "homepage" : "https://github.com/ajithilan/recruitment-solutions",
+  "homepage": "https://github.com/ajithilan/recruitment-solutions/",
   "name": "digitalrecruitmentsolution",
   "private": true,
   "version": "0.0.0",
@@ -13,12 +13,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.0",
+    "@reduxjs/toolkit": "^1.9.5",
     "bootstrap-icons": "^1.10.5",
     "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.14.0",
-    "react-slide-routes": "^3.0.3"
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.19.0",
+    "react-slide-routes": "^3.0.3",
+    "redux": "^4.2.1",
+    "sass": "^1.63.6"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

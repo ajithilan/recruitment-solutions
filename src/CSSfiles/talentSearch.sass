@@ -1,0 +1,550 @@
+.talent_search
+  height: 100vh
+  display: flex
+  justify-items: center
+  align-items: center
+  gap: 30px
+  padding: 0px 50px
+  background: linear-gradient(140deg,#01024b, rgb(10, 7, 27), #010236 30%, rgb(10, 7, 27), #000144)
+  position: relative
+
+.filter_container, .candidate_container
+  height: 95vh
+  border-radius: 6px
+  box-shadow: 0px 0px 10px 0px rgb(129, 129, 129)
+  background-color: rgba(255, 255, 255, 0.25)
+  backdrop-filter: saturate(180%) blur(10px)
+
+.filter_container
+  width: 300px
+  gap: 10px
+  display: flex
+  flex-direction: column
+  align-items: center
+  box-sizing: border-box
+  padding: 8px
+  overflow-x: hidden
+  overflow-y: auto
+
+  *
+    font-family: 'Montserrat', sans-serif
+
+.primary_filter
+  width: 100%
+  height: fit-content
+  border-radius: 10px
+  background-color: rgba(168, 168, 168, 0.1)
+  border: 1px solid rgba(83, 83, 83, 0.5)
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: 10px
+  padding: 24px 0px
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4)
+
+.searchby_job_container
+  width: 100%
+  min-height: fit-content
+  display: flex
+  flex-direction: column
+  justify-content: space-around
+  align-items: center
+  padding-bottom: 10px
+  gap: 20px
+
+.search_input_container
+  position: relative
+  display: flex
+  width: 90%
+  height: 35px
+  border-radius: 10px
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4)
+
+.job_title
+  width: 90%
+  border: none
+  border-radius: 10px 0px 0px 10px
+  font-size: 14px
+  background: transparent
+  color: whitesmoke
+  text-align: center
+  
+  &::placeholder
+    color: whitesmoke
+    opacity: .8
+
+  &:focus
+    outline: none
+
+    &::placeholder
+      color: transparent
+
+.clear_input_btn
+  position: absolute
+  right: 50px
+  color: rgb(36, 36, 36)
+  font-size: 24px
+  align-self: center
+  width: 20px
+  padding: 0px 4px
+
+  i:hover
+    color: rgb(214, 214, 214)
+    transition: .2s
+
+
+.job_search_btn
+  width: 50px
+  color: whitesmoke
+  background-color: rgb(35, 112, 184)
+  border: none
+  border-radius: 0px 10px 10px 0px
+
+  &:hover
+    background-color: rgba(35, 112, 184,.8)
+  
+.dropdown
+  position: absolute
+  top: 40px
+  min-width: 100%
+  width: fit-content
+  height: fit-content
+  border-radius: 10px
+  z-index: 10
+  background-color: rgb(238, 238, 238)
+  overflow: hidden
+
+.option
+  display: block
+  padding: 8px
+  color: rgb(37, 37, 37)
+
+  &:hover
+    cursor: default
+    background-color: rgb(224, 224, 224)
+
+.tags_container
+  display: flex
+  flex-wrap: wrap
+  width: 90%
+  min-height: 100px
+  height: fit-content
+  color: rgb(39, 39, 39)
+  background-color: transparent
+  border-radius: 10px
+  padding: 10px
+  box-sizing: border-box
+  gap: 10px
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4)
+
+  span.placeholder
+    display: block
+    width: 100%
+    color: whitesmoke
+    opacity: .5
+    text-align: center
+    align-self: center
+    cursor: default
+
+.tag
+  width: fit-content
+  min-height: 10px
+  height: fit-content
+  display: flex
+  align-items: center
+  gap: 6px
+  color: whitesmoke
+  background: inherit
+  padding: 10px 10px
+  border: none
+  border-radius: 6px
+  font-size: 12px
+  cursor: default
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4)
+  
+.remove_btn
+  font-size: 12px
+
+  &:hover
+    opacity: .7
+
+.searchby_location_container
+  width: 100%
+  height: fit-content
+  display: flex
+  flex-direction: column
+  justify-content: space-around
+  align-items: center
+  padding-bottom: 10px
+  box-sizing: border-box
+  gap: 20px
+
+.location_dropdown_container
+  position: relative
+  display: flex
+  width: 90%
+  justify-content: space-around
+  padding: 10px 10px
+  border: none
+  border-radius: 10px
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4)
+  cursor: default
+  color: whitesmoke
+  box-sizing: border-box
+
+  &:hover
+    .container_title,.location_dropdown_btn
+      opacity: 1
+
+.container_title,.location_dropdown_btn
+  opacity: .8
+
+.location_dropdown
+  display: none
+  top: 44px !important
+
+  &.active
+    display: block
+  
+.location_option
+  padding-left: 60px
+
+
+.searchby_exp_container
+  width: 90%
+  display: flex
+  flex-direction: column
+  border-radius: 10px
+  padding: 16px
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4)
+  box-sizing: border-box
+  gap: 10px
+
+.exp_title
+  display: block
+  text-align: center
+
+.exp
+  text-align: center
+  font-size: 12px
+
+
+.shift_container
+  display: flex
+  flex-direction: column
+  align-items: center
+  width: 90%
+  padding: 30px 10px 20px 10px
+  box-sizing: border-box
+  gap: 20px
+  color: whitesmoke
+  opacity: .8
+
+.shift_title
+  display: block
+  text-align: center
+  
+.shift_radio
+  display: flex
+  width: fit-content
+  box-sizing: border-box
+  font-size: 12px
+  gap: 20px
+
+  div
+    display: flex
+    align-items: end
+    gap: 2px
+
+.clearFilter_btn
+  background: none
+  border: none
+  border-radius: 10px
+  padding: 5px 10px
+  color: whitesmoke
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4)
+  transition: .2s
+
+  &:hover
+    background-color: rgba(145, 145, 145, 0.2)
+  
+  &:active
+    background-color: rgba(168, 168, 168, 0.377)
+
+.candidate_container
+  display: flex
+  flex-direction: column
+  width: 90%
+  overflow-y: scroll
+
+  *
+    font-family: 'Ysabeau SC', sans-serif
+
+.saved_access_bar
+  display: flex
+  padding: 10px 50px
+  justify-content: space-between
+
+
+.accessbar_btns
+  display: flex
+  justify-content: center
+  background-color: rgb(35, 112, 184)
+  color: whitesmoke
+  border: none
+  border-radius: 10px
+  padding: 5px 20px
+  font-size: 20px
+  transition: background-color .2s
+
+  &:hover
+    background-color: #2370b8d3
+
+.saved_candidates_btn
+  width: 220px
+  height: 40px
+  white-space: nowrap
+  transition: width .3s
+  overflow: hidden
+
+  &.active
+    width: 80px
+    align-items: center
+
+
+.clist_container
+  display: flex
+  flex-wrap: wrap
+  height: fit-content
+  padding: 20px 30px 0px 30px
+  justify-content: space-around
+
+.candidate
+  position: relative
+  width: 300px
+  height: 344px
+  padding: 10px
+  margin-bottom: 40px
+  border-radius: 16px
+  box-shadow: 0px 0px 8px 0px rgba(19, 19, 19, 0.6)
+  transition: .3s, transform .1s
+  backdrop-filter: opacity(.2)
+  
+  *
+    display: flex
+    justify-content: center
+    align-items: center
+    color: rgba(168, 158, 201,.8)
+  
+  &.view
+    width: 350px
+    height: 400px
+
+    .save_candidate
+      top: 30px
+      right: 26px
+
+    .main_details_container
+      grid-template-areas: 'name' 'detail1' 'detail2'
+      grid-template-rows: 1fr 54px 1fr
+      justify-content: start
+      justify-items: start
+      padding: 0px 10px
+      transform: translateY(-128px)
+      transition: .5s
+
+      span
+        opacity: 1
+
+      span.hidden
+        display: block
+      
+      span:nth-child(1)
+        border-bottom: solid 2px rgb(61, 61, 61)
+
+      span:nth-child(2)
+        margin: 20px 0px
+
+    .image_container
+      opacity: 0
+      transition: .3s
+
+    .more_details_container
+      transform: translateY(0px)
+      opacity: 1
+      transition: opacity 1s, transform .4s
+
+.candidate_btn
+  position: absolute
+  top: 10px
+  right: 10px
+  width: 40px
+  height: 30px
+  font-size: 20px
+  color: whitesmoke
+  background-color: rgba(29, 29, 29, 0.2)
+  cursor: pointer
+  border: none
+  border-radius: 6px
+  box-shadow: 0px 0px 2px 0px rgba(19, 19, 19, 0.8)
+  transition: .2s
+  z-index: 2
+
+  &:hover
+    background-color: rgba(39, 39, 39, 0.5)
+
+.save_candidate_btn.saved
+    background-color: rgba(68, 119, 206,.8)
+    box-shadow: none
+
+.remove_candidate_btn
+  background-color: rgba(209, 33, 33, 0.5)
+  box-shadow: none
+
+  &:hover
+    background-color: rgba(209, 33, 33, 0.3)
+
+.image_container
+  height: 130px
+  padding-top: 6px
+  transition: 1s
+  opacity: 1
+
+  .avatar
+    color: whitesmoke
+    box-shadow: 0px 0px 6px 0px rgba(19, 19, 19, 0.8)
+
+.main_details_container
+  display: grid
+  width: 100%
+  grid-template-areas: 'name name' 'detail1 detail2'
+  grid-column-gap: 20px
+  height: 160px
+  font-size: 20px
+  color: rgb(22, 22, 22)
+  transition: transform .5s
+  padding: 0px 10px
+  box-sizing: border-box
+
+  span
+    gap: 10px
+    opacity: .9
+
+    &:nth-child(1)
+      font-size: 28px
+      opacity: 1
+      grid-area: name
+
+    &:nth-child(2)
+      grid-area: detail1
+      
+
+    &:nth-child(3)
+      grid-area: detail2
+  
+    i
+      color: rgb(174, 193, 211)
+
+    span
+      &.hidden
+        display: none
+        text-wrap: nowrap
+
+      &.info_title
+        color: rgb(174, 193, 211)
+
+.details_btn
+  position: absolute
+  left: 47%
+  bottom: 15px
+  font-size: 26px
+  width: 24px
+  height: 30px
+  background-color: transparent
+  border: solid 1px transparent
+  border-radius: 100px
+  overflow: hidden
+  transition: transform 0s
+  color: rgb(36, 35, 35)
+
+  i
+    pointer-events: none
+
+  &.r180
+    transition: .5s
+    transform: rotate(180deg)
+
+  &.r360
+    transition: .5s
+    transform: rotate(360deg)
+
+.more_details_container
+  position: absolute
+  width: inherit
+  height: 45%
+  bottom: 50px
+  opacity: 0
+  cursor: default
+  flex-wrap: wrap
+  justify-content: start
+  padding-left: 10px
+  transform: translateY(100px)
+  transition: transform 2s
+
+  div
+    align-items: end
+    color: rgb(174, 193, 211)
+    font-size: 20px
+    text-wrap: nowrap
+
+    i
+      color: rgb(174, 193, 211)
+      padding-right: 8px
+
+    span
+      padding-left: 8px
+      text-wrap: wrap
+      display: flex
+
+.no_candidate_block
+  display: flex
+  align-items: center
+  height: 50vh
+  padding: 50px
+
+.pagination_container
+  display: flex
+  justify-content: center
+  padding: 20px 0px
+
+.scrollTop_btn
+  position: absolute
+  border: none
+  border-radius: 100px
+  bottom: 50px
+  right: 65px
+  font-size: 24px
+  width: 38px
+  height: 38px
+  color:  rgb(174, 193, 211)
+  box-shadow: 0px 0px 4px 0px rgba(19, 19, 19, 0.6)
+  background-color: rgba(255, 255, 255, 0.25)
+  transition: .2s
+
+  &:hover
+    background-color: rgba(255, 255, 255, 0.356)
+
+
+.filter_container
+  &::-webkit-scrollbar-thumb
+    border: 2px solid rgb(108, 134, 207)
+
+  &::-webkit-scrollbar-track
+    background: transparent
+
+.candidate_container
+  &::-webkit-scrollbar-thumb
+    border: 2px solid rgb(108, 134, 207)
+
+  &::-webkit-scrollbar-track
+    background: transparent
