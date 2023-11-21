@@ -156,7 +156,7 @@ export const Homepage = ()=>{
             </nav>
             {userSessionStart ? <div className="profileName">{(loginValidation.current.companyName).toUpperCase()}</div> :
             <Fab className='login' onClick={handleLogin} variant="extended" color="primary" aria-label="login"
-                sx={{width:'220px', fontSize:'17px', zIndex: 20}}>
+                sx={{width:'220px', fontSize:'16px', zIndex: 20}}>
                 Register / Login
             </Fab>}
             <div className="profile" title='Account settings'><img src={profile} alt="profile" onClick={handleDropdown}/></div>

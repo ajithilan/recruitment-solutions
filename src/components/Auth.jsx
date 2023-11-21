@@ -189,6 +189,11 @@ export const Auth = (props)=>{
                     <Login handleSubmit={handleSubmit} handleToggle={handleToggle}/>
                 </div>
                 <Rules loginSubmit={loginSubmit}/>
+                <div className="floaterCredentials">
+                        <span>For testing purpose use login credentials :</span>
+                        <span><span>Email :</span> admin123@gmail.com</span>
+                        <span><span>Password :</span> Admin@123</span>
+                </div>
                 </AuthContext.Provider>
             </Backdrop>
 }

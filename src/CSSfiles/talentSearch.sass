@@ -334,36 +334,34 @@
     display: flex
     justify-content: center
     align-items: center
-    color: rgba(168, 158, 201,.8)
+    color: rgba(188, 177, 226, 0.8)
   
   &.view
     width: 350px
     height: 400px
 
-    .save_candidate
-      top: 30px
-      right: 26px
-
     .main_details_container
-      grid-template-areas: 'name' 'detail1' 'detail2'
-      grid-template-rows: 1fr 54px 1fr
-      justify-content: start
-      justify-items: start
+      display: flex
+      flex-direction: column
+      align-items: start
+      height: 144px
       padding: 0px 10px
       transform: translateY(-128px)
       transition: .5s
 
-      span
+      div
+        min-height: 42px
         opacity: 1
+      
+      div:nth-child(1)
+        padding-bottom: 4px
+        border-bottom: solid 2px rgb(46, 46, 46)
 
+      div:nth-child(2)
+        padding-top: 4px
+      
       span.hidden
         display: block
-      
-      span:nth-child(1)
-        border-bottom: solid 2px rgb(61, 61, 61)
-
-      span:nth-child(2)
-        margin: 20px 0px
 
     .image_container
       opacity: 0
@@ -373,6 +371,9 @@
       transform: translateY(0px)
       opacity: 1
       transition: opacity 1s, transform .4s
+    
+    .details_btn
+      bottom: 10px
 
 .candidate_btn
   position: absolute
@@ -421,12 +422,11 @@
   grid-column-gap: 20px
   height: 160px
   font-size: 20px
-  color: rgb(22, 22, 22)
   transition: transform .5s
   padding: 0px 10px
   box-sizing: border-box
 
-  span
+  div
     gap: 10px
     opacity: .9
 
@@ -460,12 +460,11 @@
   font-size: 26px
   width: 24px
   height: 30px
-  background-color: transparent
+  background: none
   border: solid 1px transparent
   border-radius: 100px
   overflow: hidden
   transition: transform 0s
-  color: rgb(36, 35, 35)
 
   i
     pointer-events: none
@@ -480,19 +479,21 @@
 
 .more_details_container
   position: absolute
-  width: inherit
+  width: 90%
   height: 45%
-  bottom: 50px
+  bottom: 70px
   opacity: 0
   cursor: default
-  flex-wrap: wrap
+  flex-direction: column
   justify-content: start
+  align-items: flex-start
   padding-left: 10px
   transform: translateY(100px)
   transition: transform 2s
 
   div
-    align-items: end
+    min-height: 42px
+    align-items: center
     color: rgb(174, 193, 211)
     font-size: 20px
     text-wrap: nowrap

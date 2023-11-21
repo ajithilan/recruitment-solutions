@@ -55,13 +55,14 @@ export const Candidate = (props)=>{
             <Avatar className="avatar" sx={{width:'100px',height:'100px', fontSize: '32px', fontWeight: 600, bgcolor: color}}>{retrieveLetters()}</Avatar>
         </div>
         <div className="main_details_container">
-            <span><i className="bi-person-badge"></i>{obj.name}</span>
-            <span><i className="bi-code-slash"></i><span className="hidden info_title">role : </span>{obj.job.toLowerCase()}</span>
-            <span><i className="bi-pin-map"></i><span className="hidden info_title">location : </span>{obj.experience}</span>
+            <div><i className="bi-person-badge"></i>{obj.name}</div>
+            <div><i className="bi-code-slash"></i><span className="hidden info_title">role : </span>{obj.job.toLowerCase()}</div>
+            <div><i className="bi-pin-map"></i><span className="hidden info_title">location : </span>{obj.location}</div>
         </div>
         <div className="more_details_container">
             <div className="info_title"><i className="bi-buildings"></i>current company : <span>{obj.company.toLowerCase()}</span></div>
             <div className="info_title"><i className="bi-currency-rupee"></i>current ctc : <span>{obj.salary} lpa</span></div>
+            <div className="info_title"><i className="bi-bookmark-star"></i>y.o.e : <span>{obj.experience}</span></div>
             <div className="info_title"><i className="bi-geo-alt"></i>willing to relocate : <span>{obj.relocate}</span></div>
             <div className="info_title"><i className="bi-clock-history"></i>shift flexibility : <span>{obj.shift}</span></div>
         </div>
