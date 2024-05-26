@@ -1,23 +1,33 @@
+@mixin flex-center($justify: center)
+  display: flex
+  justify-content: $justify
+  align-items: center
+
+@mixin section-title
+  font-size: 90px
+  color: rgb(100, 204, 197)
+
 .homepage
-  min-height: 100vh
+  width: 100%
   height: fit-content
   background: linear-gradient(140deg,#000129, black, #000129 30%, black, #000150)
 
-.top_bar
-  height: 130px
-  display: flex
-  justify-content: flex-end
-  align-items: center
-  padding-right: 40px
+.nav-bar
+  @include flex-center(space-around)
+  height: 100px
+  padding: 0 20px
   gap: 40px
+  box-sizing: border-box
+
+  *
+    transition: all .3s
 
   nav
-    display: flex
-    padding: 42px 0px
-    gap: 50px
+    @include flex-center
+    height: 100%
+    gap: 40px
 
   a
-    position: relative
     text-decoration: none
     font-size: large
     padding: 6px 40px
@@ -37,6 +47,44 @@
       border: solid 1px transparent
       transition: .2s
 
+.brand
+  display: flex
+  gap: 20px
+  font-size: 32px
+  cursor: default
+
+.brand-name
+  white-space: nowrap
+
+.brand-logo
+  max-height: 60px
+  color: rgb(182, 238, 224)
+  transform: skew(-16deg)
+  border: solid 1px rgb(155, 209, 166)
+  border-radius: 50px 0px 50px 0px
+
+.profile-container
+  @include flex-center
+  gap: 20px
+
+.account
+  position: relative
+
+.profileName
+  position: relative
+  z-index: 5
+  @include flex-center
+  height: 36px
+  border-radius: 50px
+  padding: 4px 40px
+  color: rgb(43, 43, 43)
+  background-color: rgb(108, 207, 174)
+  cursor: default
+  box-sizing: border-box
+  font-family: Arial, Helvetica, sans-serif
+  font-size: 24px
+  font-weight: 700
+
 .profile img
   width: 40px
   height: 40px
@@ -45,6 +93,7 @@
   transition: .2s
   position: relative
   z-index: 10
+  cursor: pointer
 
   &:hover
     box-shadow: 0px 0px 10px 6px rgb(160, 216, 196)
@@ -52,26 +101,13 @@
   &:active
     box-shadow: 0px 0px 10px 6px rgb(107, 153, 137)
 
-.profileName
-  position: relative
-  z-index: 5
-  display: flex
-  justify-content: center
-  align-items: center
-  min-width: 120px
-  width: fit-content
-  border-radius: 50px
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
-  font-size: 24px
-  font-weight: 700
-  padding: 4px 24px
-  color: rgb(43, 43, 43)
-  background-color: rgb(108, 207, 174)
-  cursor: default
-
 .sections
+  @include flex-center
+  flex-direction: column
   width: 100%
   color: whitesmoke
+  box-sizing: border-box
+  padding: 50px 0
 
 .hid
   transition: all 1s
@@ -92,124 +128,114 @@
   filter: blur(0)
   transform: translateX(0)
 
-.main_content
-  height: 500px
-  padding: 40px 20px
-  display: flex
+.start-content
+  @include flex-center
+  width: 100%
+  height: fit-content
+  padding: 40px 0
+  gap: 100px
+  box-sizing: border-box
+
+  img
+    width: 600px
 
   h1
-    margin: 0
     font-size: 110px
-    width: 600px
-    padding: 70px 0px 0px 7%
+    max-width: 600px
+    padding: 0 40px
 
     span
       color: rgb(36, 152, 190)
 
-  img
-    padding-left: 220px
-    background-color: transparent
-
-.mid_content
-  display: grid
+.mid-content
+  @include flex-center
+  flex-direction: column
+  width: 100%
   height: fit-content
-  padding: 40px 60px
-  grid-template-rows: auto auto
-  grid-template-columns: auto
-  grid-template-areas: "mid_img mid_heading" "mid_para mid_para"
+  padding: 40px 0
+  box-sizing: border-box
 
   img
-    padding-top: 50px
-    grid-area: mid_img
-
-  h2
-    margin: 0
-    padding: 40px
-    grid-area: mid_heading
-    font-size: 100px
-    line-height: 1.2
-    color: rgb(100, 204, 197)
+    width: 600px
 
   p
-    margin: 0
-    padding: 50px 50px 0px 50px
-    grid-area: mid_para
+    max-width: 1400px
+    padding-top: 50px
     font-size: 42px
     line-height: 1.8
 
-.end_content
-  display: grid
-  grid-template-rows: auto
-  grid-template-columns: auto auto
-  grid-template-areas: "end_heading end_img" "end_para end_img"
-  padding: 0px 1%
-
-  h3
-    grid-area: end_heading
-    font-size: 90px
-    padding: 50px
-    color: rgb(100, 204, 197)
-
-  img
-    grid-area: end_img
-    padding: 30px 100px 0px 0px
-
-  p
-    grid-area: end_para
-    width: 900px
-    font-size: 30px
-    line-height: 1.4
-    padding-left: 50px
-
-.mobile_content
-  display: grid
-  grid-template-columns: auto
-  grid-template-rows: auto
-  grid-template-areas: "mobile_img mobile_heading" "mobile_img mobile_para"
-  padding: 50px
+.mid-title
+  @include flex-center
+  width: 100%
+  gap: 100px
 
   h2
-    grid-area: mobile_heading
-    font-size: 80px
-    padding: 30px 46px 30px 0px
-    display: flex
-    justify-content: center
-    align-items: center
-    color: rgb(100, 204, 197)
+    max-width: 600px
+    padding: 0 40px
+    @include section-title
+    line-height: 1.2
+
+.end-content
+  @include flex-center
+  width: 100%
+  gap: 100px
+  padding: 40px 0
+  box-sizing: border-box
 
   img
-    grid-area: mobile_img
-    padding: 50px
+    width: 500px
 
-  div
-    grid-area: mobile_para
-    font-size: 38px
+.end-details
+  max-width: 800px
 
   h3
-    padding-bottom: 20px
+    @include section-title
+    padding-bottom: 40px
 
-  div p
-    line-height: 2
+  p
+    font-size: 30px
+    line-height: 1.4
+
+.mobile-content
+  @include flex-center
+  gap: 100px
+  width: 100%
+  padding: 40px 0
+  box-sizing: border-box
+
+  img
+    width: 500px
+
+
+.mobile-details
+  max-width: 800px
+  display: flex
+  justify-content: space-around
+  align-items: flex-start
+  flex-direction: column
+  font-size: 38px
+
+  h2
+    @include section-title
+    padding-bottom: 40px
+
+  h3
+    padding-bottom: 10px
 
   span
     color: #3B71CA
 
-.link_container
+.link-container
   width: 100%
   height: 100px
-  display: flex
-  justify-content: center
-  align-items: center
-  padding: 50px 0px 100px 0px
+  @include flex-center
+  padding: 50px 0
 
-.talentsearch_button
+.talentsearch-button
   text-decoration: none
   color: white
   width: 400px
   height: 60px
-  display: flex
-  justify-content: center
-  align-items: center
   font-size: 28px
   border: none
   border-radius: 50px
@@ -220,35 +246,32 @@
   &:hover
     background-position: right center
 
+.footer-container
+  width: 100%
+  @include flex-center
+
 footer
+  @include flex-center
   width: 80%
   height: 120px
   border-radius: 100px 100px 0px 0px
-  margin-left: 10%
   box-shadow: 0px 0px 10px rgb(160, 216, 196)
-  display: flex
-  justify-content: center
   gap: 50px
-  align-items: center
   background-color: #41454b
 
   div
-    display: flex
-    justify-content: center
-    align-items: center
+    @include flex-center
 
     &:hover
       cursor: default
 
   div i
-    z-index: 20
+    @include flex-center
     width: 50px
     height: 50px
     font-size: 32px
-    display: flex
-    justify-content: center
-    align-items: center
     transition: .3s
+    z-index: 20
 
     &.hid
       transform: translateY(100%)
@@ -285,6 +308,8 @@ footer
     transition: .4s
 
 
+//Scrollbar
+
 ::-webkit-scrollbar
   width: 8px
 
@@ -297,3 +322,194 @@ footer
   border: 2px solid rgb(160, 216, 196)
   background-clip: content-box
   background-color: transparent
+
+
+//Media Queries
+  
+@media (max-width: 949px)
+  .nav-bar
+    padding: 0 50px
+
+  .login
+    width: 160px !important
+    font-size: 14px !important
+    
+  .profileName
+    padding-inline: 20px
+    font-size: 20px
+
+  .sections
+    padding: 20px 60px 50px
+
+  .start-content
+    gap: 10px
+
+    img
+      width: 350px
+
+    h1
+      font-size: 70px
+
+  .mid-content
+    img
+      width: 350px
+
+    p
+      font-size: 26px
+
+  .mid-title
+    gap: 30px
+
+  .end-content
+    gap: 20px
+
+    img
+      width: 300px
+
+  .mobile-content
+    img
+      width: 300px
+
+    h3
+      font-size: 26px
+
+    p
+      font-size: 22px
+  
+  .talentsearch-button
+    width: 320px
+    height: 50px
+    font-size: 26px
+
+  footer
+    height: 80px
+
+    div i
+      font-size: 28px
+  
+@media (950px <= width <= 1199px)
+  .nav-bar
+    justify-content: space-between
+    padding: 0 80px
+
+  .sections
+    padding: 20px 100px 50px
+
+  .start-content
+    img
+      width: 400px
+
+    h1
+      font-size: 80px
+
+  .mid-content
+    img
+      width: 400px
+
+    p
+      font-size: 30px
+
+  .end-content
+    img
+      width: 350px
+
+  .mobile-content
+    img
+      width: 350px
+
+    h3
+      font-size: 30px
+
+    p
+      font-size: 24px
+
+@media (max-width: 1199px)
+  .mid-content
+    h2
+      font-size: 60px
+
+  .end-content
+    h3
+      font-size: 60px
+
+    p
+      font-size: 24px
+
+  .mobile-content
+    h2
+      font-size: 60px
+
+@media (1200px <= width <= 1499px)
+  .nav-bar
+    justify-content: space-between
+    padding: 0 80px
+
+  .sections
+    padding: 20px 100px 50px
+
+  .start-content
+    img
+      width: 450px
+
+    h1
+      font-size: 90px
+
+  .mid-content
+    img
+      width: 450px
+
+    h2
+      font-size: 70px
+
+    p
+      font-size: 34px
+
+  .end-content
+    img
+      width: 400px
+    
+  .end-details
+    h3
+      font-size: 70px
+
+  .mobile-content
+    img
+      width: 400px
+
+    h2
+      font-size: 70px
+
+    h3
+      font-size: 36px
+
+    p
+      font-size: 30px
+
+@media (max-width: 1499px)
+  .nav-bar
+    nav
+      display: none
+
+  .start-content
+    h1
+      justify-content: space-between
+      padding: 0
+
+  .mid-content
+    h2
+      max-width: none
+      padding: 0
+
+    p
+      line-height: 1.5
+
+@media (1500px <= width <= 1700px)
+  .nav-bar
+    gap: 20px
+
+    nav
+      gap: 20px
+
+    a
+      padding-inline: 30px
+  

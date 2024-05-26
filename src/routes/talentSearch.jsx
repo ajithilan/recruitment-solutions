@@ -37,15 +37,12 @@ export const TalentSearch = ()=>{
     },[displaySaved, filterSel])
 
     const candidateDataToDisplay = displaySaved ? saveSel.value : candidateData.filter((data)=>{
-        return filterSel.jobTitleTags.length !== 0 ? filterSel.jobTitleTags.some((tag)=>{
-            return (data.job.toLowerCase().replace(/ /g,'')).includes(tag.replace(/ /g,''))
-        }) : true
-    }).filter((data)=>{
-        return locationActive ? filterSel.locationTags.includes(data.location) : true
-    }).filter((data)=>{
-        return (data.experience >= filterSel.experience.minexp) && (data.experience <= filterSel.experience.maxexp)
-    }).filter((data)=>{
-        return shiftActive ? filterSel.shift === data.shift  : true
+        return (
+            (filterSel.jobTitleTags.length !== 0 ? filterSel.jobTitleTags.some(tag=>(data.job.toLowerCase().replace(/ /g,'')).includes(tag.replace(/ /g,''))) : true)
+            && (locationActive ? filterSel.locationTags.includes(data.location) : true)
+            && (data.experience >= filterSel.experience.minexp && data.experience <= filterSel.experience.maxexp)
+            && (shiftActive ? filterSel.shift === data.shift : true)
+        );
     });
 
     const numberOfValidCandidates = Object.keys(candidateDataToDisplay).length;

@@ -6,11 +6,13 @@ import './CSSfiles/App.sass'
 
 export default function App(){
 
-    return <div className="App">
+    return (
+        <div className="App">
             <SlideRoutes duration={1000} timing='ease-in-out'>
                 <Route path='' element={<Homepage/>}/>
                 <Route path='/talent-search' element={<TalentSearch/>}/>
                 <Route path='*' element={<TalentSearch/>}/>
             </SlideRoutes>
         </div>
+        )
 }

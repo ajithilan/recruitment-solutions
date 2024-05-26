@@ -47,10 +47,12 @@ export const Candidate = (props)=>{
 
     const removeCandidate = (id) =>{ dispatch(removeCandidateData(id)) }
 
-    return <div className="candidate"  id={obj.id}>{
-        !props.displaySaved ? <button className={(saveSelector.id.includes(obj.id) ? "bi-check2 saved" : "bi-person-plus") + " save_candidate_btn candidate_btn"} onClick={(e)=>saveCandidate(e,obj)}></button> :
-        <button className={"remove_candidate_btn candidate_btn bi-x-lg"} onClick={()=>removeCandidate(obj.id)}></button>
-    }
+    return <div className="candidate"  id={obj.id}>
+        {
+            !props.displaySaved
+                ? <button className={(saveSelector.id.includes(obj.id) ? "bi-check2 saved" : "bi-person-plus") + " save_candidate_btn candidate_btn"} onClick={(e)=>saveCandidate(e,obj)}></button>
+                : <button className={"remove_candidate_btn candidate_btn bi-x-lg"} onClick={()=>removeCandidate(obj.id)}></button>
+        }
         <div className="image_container">
             <Avatar className="avatar" sx={{width:'100px',height:'100px', fontSize: '32px', fontWeight: 600, bgcolor: color}}>{retrieveLetters()}</Avatar>
         </div>

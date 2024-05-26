@@ -285,15 +285,17 @@
   padding: 10px 50px
   justify-content: space-between
 
-
 .accessbar_btns
   display: flex
   justify-content: center
+  align-items: center
+  width: 220px
+  height: 40px
   background-color: rgb(35, 112, 184)
   color: whitesmoke
   border: none
+  white-space: nowrap
   border-radius: 10px
-  padding: 5px 20px
   font-size: 20px
   transition: background-color .2s
 
@@ -301,9 +303,6 @@
     background-color: #2370b8d3
 
 .saved_candidates_btn
-  width: 220px
-  height: 40px
-  white-space: nowrap
   transition: width .3s
   overflow: hidden
 
@@ -549,3 +548,13 @@
 
   &::-webkit-scrollbar-track
     background: transparent
+
+
+//Media Queries
+  
+@media (max-width : 980px)
+  .accessbar_btns
+    width: 180px
+    font-size: 18px
+    
+  
