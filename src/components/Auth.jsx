@@ -132,7 +132,6 @@ export const Auth = (props)=>{
     }
   
     const checkSuccess = (checkEmail)=>{
-        console.log(typeof(localUserDetails), localUserDetails, 'error here');
         return localUserDetails.some((obj)=>{
             if(obj.email === checkEmail){
                 fetchedUserDetails.current.storedUserPassword = obj.password;
@@ -156,7 +155,9 @@ export const Auth = (props)=>{
     const handleToggle = ()=>{ setloginSubmit(!loginSubmit) }
 
     useEffect(()=>{
-        auth_comp && auth_comp.classList.toggle('switch');
+        if(auth_comp){
+            auth_comp.classList.toggle('switch');
+        }
     },[loginSubmit])
 
     function restrictTouch(time){
@@ -188,7 +189,7 @@ export const Auth = (props)=>{
                     <Register {...propsToPass}/>
                     <Login handleSubmit={handleSubmit} handleToggle={handleToggle}/>
                 </div>
-                <Rules loginSubmit={loginSubmit}/>
+                <Rules/>
                 <div className="floaterCredentials">
                         <span>For testing purpose use login credentials :</span>
                         <span><span>Email :</span> admin123@gmail.com</span>

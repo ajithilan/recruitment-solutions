@@ -27,6 +27,9 @@ h1, h2, h3, h4, p
   overflow: hidden
   transition: transform .8s
 
+  &.switch
+    transform: translateX(200px)
+
 .login, .register
   display: flex
   flex-direction: column
@@ -166,15 +169,15 @@ input
   filter: blur(0)
   transition: .8s
 
-  &.login_rule
-    filter: blur(2px)
-    transform: translateX(-200px)
-    transition: filter .3s, transform .8s
-
   ul li
     font-size: 18px
     margin-bottom: 24px
     color: whitesmoke
+
+.auth_comp.switch ~ .rules_container
+  filter: blur(2px)
+  transform: translateX(-200px)
+  transition: filter .3s, transform .8s
 
 .floaterCredentials
   position: absolute
@@ -185,18 +188,3 @@ input
 
   span span
       color: rgb(36, 152, 190)
-
-
-//Media Queries
-
-@media (max-width: 480px)
-  
-@media (481px <= width <= 768px)
-  
-@media (769px <= width <= 1024px)
-  
-@media (1025px <= width <= 1200px)
-  
-@media (min-width: 1201px)
-  
-  
